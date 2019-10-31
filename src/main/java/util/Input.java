@@ -9,7 +9,4 @@ public class Input {
         return scanner.nextLine();
     }
 
-    public int getInt() {
-        return scanner.nextInt();
-    }
 }
