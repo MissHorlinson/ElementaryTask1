@@ -6,19 +6,11 @@ public class Output {
         System.out.println("Enter " + side + " of a board");
     }
 
-    public void printStar() {
-        System.out.print("*");
+    public void printChessBoard(StringBuilder line) {
+        System.out.println(line);
     }
 
-    public void printSpace() {
-        System.out.print(" ");
-    }
-
-    public void newLine() {
-        System.out.println();
-    }
-
-    public void negativeNumber() {
-        System.out.println("It should be positive number > 0");
+    public void wrongData() {
+        System.out.println("Not valid data");
     }
 }

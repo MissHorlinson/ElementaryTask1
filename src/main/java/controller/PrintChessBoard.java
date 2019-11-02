@@ -5,6 +5,7 @@ import service.BoardService;
 import util.*;
 
 public class PrintChessBoard {
+
     private Input        input = new Input();
     private Output       output = new Output();
     private BoardService service = new BoardService();
@@ -12,33 +13,24 @@ public class PrintChessBoard {
     private ChessBoard   board;
 
     public void createBoard() {
-        board = new ChessBoard(chessBoard("height"), chessBoard("width"));
+        board = new ChessBoard(boardSide("height"), boardSide("width"));
         boardToScreen(board);
     }
 
-    public void boardToScreen(ChessBoard board) {
-        for(int i = 0; i < board.getHeight(); i++) {
-            for(int j = 0; j < board.getWidth(); j++) {
-                if(service.symbolPrint(i, j)) {
-                    output.printStar();
-                } else {
-                    output.printSpace();
-                }
-            }
-            output.newLine();
+    public int boardSide(String side) {
+        output.chessBoardInstruction(side);
+        String sideValue = input.getString();
+        while (!validator.isValid(sideValue)) {
+            output.wrongData();
+            sideValue = input.getString();
         }
+        int value = validator.getInt(sideValue);
+        return value;
     }
 
-    public int chessBoard(String side) {
-        int sideValue = 0;
-        output.chessBoardInstruction(side);
-        while(sideValue <= 0) {
-            output.negativeNumber();
-            String value = input.getString();
-            if(validator.isNumber(value)) {
-                sideValue = validator.getInt(value);
-            }
+   public void boardToScreen(ChessBoard board) {
+        for(int i = 0; i < board.getHeight(); i++) {
+           output.printChessBoard(service.chessLine(board, i));
         }
-        return sideValue;
     }
 }

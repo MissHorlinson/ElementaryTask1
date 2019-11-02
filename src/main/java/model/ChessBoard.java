@@ -1,6 +1,7 @@
 package model;
 
 public class ChessBoard {
+
     private int height;
     private int width;
 
